@@ -1,0 +1,15 @@
+name: "Performance Test"
+description: "Run performance tests for the application"
+author: "Naresh K"
+inputs:
+  endpoint:
+    description: "The application endpoint to test"
+    required: true
+outputs:
+  testResult:
+    description: "Performance test result"
+runs:
+  using: "docker"
+  image: "./actions/performance-test/app.dockerfile"
+  args:
+    - ${{ inputs.endpoint }}
