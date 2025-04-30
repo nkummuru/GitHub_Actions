@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 # Install required packages
 #RUN pip install locust
 RUN pip install locust && \
-    pt-get update && apt-get install -y \
+    apt-get update && apt-get install -y \
     apache2-utils \
     bash \
     curl && \
