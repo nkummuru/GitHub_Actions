@@ -43,6 +43,3 @@ jobs:
     steps:
       - name: Deploy Docker Container
         run: docker run --name python-app -d -p 8080:8080 ghcr.io/${{ github.repository_owner }}/github_actions:${{ github.sha }}
-
-      - name: Verify Deployment
-        #run: curl --fail http://localhost:8080 || exit 1
