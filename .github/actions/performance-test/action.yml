@@ -10,6 +10,6 @@ outputs:
     description: "Performance test result"
 runs:
   using: "docker"
-  image: "./actions/performance-test/app.dockerfile"
+  image: "app.dockerfile"
   args:
     - ${{ inputs.endpoint }}
