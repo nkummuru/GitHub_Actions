@@ -10,8 +10,9 @@ fi
 
 APP_ENDPOINT=$1
 
+LOG_FILE="/github/workspace/locust_metrics.log"
 # Run Locust headlessly
-locust --headless -u 100 -r 10 -t 2m --host=$APP_ENDPOINT -f /locustfile.py > locust_metrics.log
+locust --headless -u 100 -r 10 -t 2m --host=$APP_ENDPOINT -f /locustfile.py > "$LOG_FILE"
 
 # Collect and parse test results
 AVG_LATENCY=$(grep "Average response time" locust_metrics.log | awk '{print $4}')
@@ -40,4 +41,5 @@ if (( $(echo "$THROUGHPUT < $MIN_THROUGHPUT" | bc -l) )); then
 fi
 
 echo "Performance Test Passed!"
-echo "::set-output name=testResults::Average Latency: ${AVG_LATENCY} ms, Error Rate: ${ERROR_RATE}, Throughput: ${THROUGHPUT} req/s"
+# Use Environment Files for setting output
+echo "testResults=Average Latency: ${AVG_LATENCY} ms, Error Rate: ${ERROR_RATE}, Throughput: ${THROUGHPUT} req/s" >> $GITHUB_ENV
