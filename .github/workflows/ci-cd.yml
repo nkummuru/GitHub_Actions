@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the Docker image
-        run: docker build . --file app.dockerfile --tag ghcr.io/${{ github.repository_owner }}/GitHub_Actions:${{ github.sha }}
+        run: docker build . --file app.dockerfile --tag ghcr.io/${{ github.repository_owner }}/github_actions:${{ github.sha }}
 
       - name: Trivy Vulnerability Scan
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: ghcr.io/${{ github.repository_owner }}/GitHub_Actions:latest
+          image-ref: ghcr.io/${{ github.repository_owner }}/github_actions:latest
           severity: HIGH,CRITICAL         # Report only HIGH and CRITICAL vulnerabilities
           format: table                   # Output vulnerabilities in table format
           ignore-unfixed: true            # Ignore unfixed vulnerabilities (optional)
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Docker Container
-        run: docker run --name python-app -d -p 8080:8080 ghcr.io/${{ github.repository_owner }}/GitHub_Actions:latest
+        run: docker run --name python-app -d -p 8080:8080 ghcr.io/${{ github.repository_owner }}/github_actions:latest
 
       - name: Verify Deployment
         run: curl --fail http://localhost:8080 || exit 1
