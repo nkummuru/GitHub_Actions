@@ -28,7 +28,7 @@ jobs:
       - name: Performance Test
         uses: ./.github/actions/performance-test
         with:
-        endpoint: http://localhost:8080
+          endpoint: http://localhost:8080
 
   deploy:
     name: Deploy to Staging
