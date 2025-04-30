@@ -17,7 +17,7 @@ jobs:
         run: docker build . --file app.dockerfile --tag ghcr.io/${{ github.repository_owner }}/GitHub_Actions:${{ github.sha }}
 
       - name: Trivy Vulnerability Scan
-        uses: aquasecurity/trivy-action@v0.11.0
+        uses: aquasecurity/trivy-action@v0
         with:
           image-ref: ghcr.io/${{ github.repository_owner }}/GitHub_Actions:latest
           severity: HIGH,CRITICAL         # Report only HIGH and CRITICAL vulnerabilities
