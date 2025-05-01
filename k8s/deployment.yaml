@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+  labels:
+    app: python-app
+spec:
+  replicas: 2                           # Number of Pods (scalable)
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-container
+        image: ghcr.io/${{ github.repository_owner }}/github_actions:${{ github.sha }} # Image from your container registry
+        ports:
+        - containerPort: 8080                        # Flask app runs on port 8080
+        env:
+        - name: FLASK_ENV
+          value: "dev"                       # Example environment variable
