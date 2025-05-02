@@ -1,0 +1,28 @@
+apiVersion: v2             # Helm chart API version (most modern charts use v2)
+name: python-app           # Name of your chart 
+description: A Helm chart for deploying a Python application
+type: application          # Chart type; could be "application" or "library" (default: application)
+version: 0.1.0             # Chart version (this follows semantic versioning)
+appVersion: "1.0.0"        # Version of the application being deployed (optional but recommended)
+
+maintainers:               # (Optional) Maintainers of this chart
+  - name: Naresh K
+    email: nareshemail@example.com
+
+keywords:                  # (Optional) Keywords to describe the chart
+  - python
+  - flask
+  - api
+
+sources:                   # (Optional) Source code URLs or documentation
+  - https://github.com/your-username/your-repository
+
+home: https://example.com  # (Optional) Home URL (can be the app’s homepage)
+
+dependencies:              # (Optional) Dependencies for the chart
+  - name: another-chart
+    version: 1.0.0
+    repository: https://example.chart.repo.com
+
+annotations:               # (Optional) Key-value annotations for tools like ArgoCD
+  argocd.argoproj.io/sync-wave: "0"
