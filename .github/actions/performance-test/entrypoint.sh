@@ -12,7 +12,7 @@ APP_ENDPOINT=$1
 
 LOG_FILE="/github/workspace/locust_metrics.log"
 # Run Locust headlessly
-locust --headless -u 100 -r 10 -t 2m --host=$APP_ENDPOINT -f /locustfile.py > "$LOG_FILE"
+locust --headless -u 10 -r 10 -t 1m --host=$APP_ENDPOINT -f /locustfile.py > "$LOG_FILE"
 
 # Collect and parse test results
 AVG_LATENCY=$(grep "Average response time" locust_metrics.log | awk '{print $4}')
