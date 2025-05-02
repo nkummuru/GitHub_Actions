@@ -35,17 +35,3 @@ jobs:
         uses: ./.github/actions/performance-test
         with:
           endpoint: http://localhost:8080
-
-      # Step 5: Update Kubernetes Deployment YAML for GitOps
-      - name: Replace Image Tag in Deployment YAML
-        run: |
-          sed -i "s|ghcr.io/\${{ github.repository_owner }}/github_actions:\${{ github.sha }}|ghcr.io/${{ github.repository_owner }}/github_actions:${{ github.sha }}|g" k8s/deployment.yaml
-
-      # Step 6: Push Updated Manifest to GitOps Repository
-      - name: Commit and Push Kubernetes Manifests
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add k8s/deployment.yaml
-          git commit -m "Update deployment image to ghcr.io/${{ github.repository_owner }}/github_actions:${{ github.sha }}"
-          git push origin main

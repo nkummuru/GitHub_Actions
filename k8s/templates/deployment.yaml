@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: python-container
-        image: ghcr.io/repository_owner/github_actions:latest # Image from your container registry
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" # Image from your container registry
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 8080                        # Flask app runs on port 8080
         env:

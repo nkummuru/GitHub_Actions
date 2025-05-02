@@ -1,0 +1,11 @@
+image:
+  repository: ghcr.io/nkummuru/github_actions
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+service:
+  type: NodePort        # Service type
+  port: 80              # Internal cluster port
+  targetPort: 8080      # Container port
+  nodePort: 30008       # Node port exposed externally
